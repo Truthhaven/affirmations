@@ -1,157 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './LandingPage.css'; // Import the CSS file
 
 const LandingPage = () => {
-    const groups = ["Education", "Healthcare", "Fitness", "Wellness", "Personal Growth", "Mental Health", "Productivity", "Relationships", "Creativity", "Adventure"];
+  const groups = [
+    { name: 'Education', goals: ['Learn a new skill', 'Read a book', 'Take a course'] },
+    { name: 'Healthcare', goals: ['Schedule a checkup', 'Drink more water', 'Exercise daily'] },
+    { name: 'Fitness', goals: ['Run 5k', 'Join a gym', 'Try yoga'] },
+    { name: 'Wellness', goals: ['Practice meditation', 'Get 8 hours of sleep', 'Take a mental health day'] },
+    { name: 'Personal Growth', goals: ['Set personal goals', 'Reflect daily', 'Start journaling'] },
+    { name: 'Mental Health', goals: ['Talk to a therapist', 'Practice gratitude', 'Take breaks'] },
+    { name: 'Productivity', goals: ['Plan your day', 'Eliminate distractions', 'Focus on one task'] },
+    { name: 'Relationships', goals: ['Call a friend', 'Plan a date', 'Reconnect with someone'] },
+    { name: 'Creativity', goals: ['Start a new project', 'Draw something', 'Write a poem'] },
+    { name: 'Adventure', goals: ['Travel somewhere new', 'Try a new activity', 'Explore your city'] },
+  ];
+
+  const [activeGroup, setActiveGroup] = useState(null);
+
   return (
-    <div
-      className="relative min-h-screen flex items-center justify-center bg-gray-100"
-      style={{ overflow: 'hidden' }}
-    >
-      {/* First Ellipse */}
-      <div
-        style={{
-          position: 'absolute',
-          width: '240px',
-          height: '240px',
-          background: '#FF0D6A',
-          filter: 'blur(75px)',
-          borderRadius: '50%',
-          top: 'calc(40% - 72px)', 
-          left: 'calc(62% - 336px)', 
-        }}
-      ></div>
+    <div className="container">
+      {/* Ellipses */}
+      <div className="ellipse ellipse-1"></div>
+      <div className="ellipse ellipse-2"></div>
+      <div className="ellipse ellipse-3"></div>
 
-      {/* Second Ellipse */}
-      <div
-        style={{
-          position: 'absolute',
-          width: '240px',
-          height: '240px',
-          background: '#0500FF',
-          filter: 'blur(75px)',
-          borderRadius: '50%',
-          top: 'calc(40% - 72px)', 
-          left: 'calc(62% - 259px)', 
-        }}
-      ></div>
+      {/* Main Text */}
+      <div className="main-text">empower your mind</div>
 
-      {/* Third Ellipse */}
-      <div
-        style={{
-          position: 'absolute',
-          width: '240px',
-          height: '240px',
-          background: '#00FFE0',
-          filter: 'blur(75px)',
-          borderRadius: '50%',
-          top: 'calc(40% - 72px)', 
-          left: 'calc(62% - 182px)', 
-        }}
-      ></div>
-        
-    {/* Main text*/}
-        <div
-        style={{
-          position: 'absolute',
-          width: '387px',
-          height: '30px',
-          fontFamily: "'Font Awesome 5 Free', sans-serif",
-          fontStyle: 'normal',
-          fontWeight: '400',
-          fontSize: '40px',
-          lineHeight: '46px',
-          textTransform: 'lowercase',
-          color: '#1E0E62',
-          top: 'calc(50% - 100px)', 
-          left: '50%',
-          transform: 'translate(-50%, 0)', 
-          textAlign: 'center',
-        }}
-      >
-        empower your mind
-      </div>
+      {/* Input Box */}
+      <input type="text" placeholder="Enter your goal" className="input-box" />
 
-       {/* Input Box */}
-      <input
-        type="text"
-        placeholder="Enter your goal"
-        style={{
-          boxSizing: 'border-box',
-          position: 'absolute',
-          width: '270px',
-          height: '50px',
-          border: '2px solid #EBEAED', 
-          background: 'transparent', 
-          borderRadius: '100px',
-          fontFamily: "'DM Sans', sans-serif",
-          fontStyle: 'normal',
-          fontWeight: '500',
-          fontSize: '18px',
-          lineHeight: '26px',
-          color: '#1E0E62',
-          display: 'flex',
-          alignItems: 'center',
-          top: 'calc(50% - 10px)', 
-          left: '50%',
-          transform: 'translate(-50%, 0)', 
-          padding: '0 24px',
-        }}
-      />
-
-   {/* Group Text Bubbles */}
-   <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '25px',
-          position: 'absolute',
-          top: 'calc(50% + 190px)', 
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '100%',
-          maxWidth: '600px',
-        }}
-      >
+      {/* Group Bubbles */}
+      <div className="group-bubbles">
         {groups.map((group, index) => (
-          <div
-            key={index}
-            style={{
-              position: 'relative',
-              width: '142px',
-              height: '50px',
-              background: '#FFFFFF',
-              border: '2px solid #EBEAED',
-              borderRadius: '10px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              fontFamily: "'DM Sans', sans-serif",
-              fontStyle: 'normal',
-              fontWeight: '700',
-              fontSize: '14px',
-              lineHeight: '26px',
-              textAlign: 'center',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              color: '#1E0E62', transition: 'all 0.3s ease', 
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = '#1E0E62'; 
-              e.target.style.color = '#FFFFFF';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'transparent'; 
-              e.target.style.color = '#1E0E62'; 
-            }}
-          >
-            {group}
+          <div key={index} style={{ position: 'relative' }}>
+            <div
+              className="bubble"
+              onClick={() => setActiveGroup(activeGroup === group.name ? null : group.name)}
+            >
+              {group.name}
+            </div>
+            {activeGroup === group.name && (
+              <div className="menu">
+                {group.goals.map((goal, i) => (
+                  <div key={i} className="menu-item">
+                    {goal}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
     </div>
-
-    
   );
 };
 
