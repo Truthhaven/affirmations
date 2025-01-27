@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './LandingPage.css'; // Import the CSS file
 
 const LandingPage = () => {
@@ -15,8 +15,6 @@ const LandingPage = () => {
     { name: 'Adventure', goals: ['Travel somewhere new', 'Try a new activity', 'Explore your city'] },
   ];
 
-  const [activeGroup, setActiveGroup] = useState(null);
-
   return (
     <div className="container">
       {/* Ellipses */}
@@ -26,21 +24,16 @@ const LandingPage = () => {
 
       {/* Main Text */}
       <div className="main-text">empower your mind</div>
+      <div> select a goal of yours to generate a positive affirmation</div>
 
-      {/* Input Box */}
-      <input type="text" placeholder="Enter your goal" className="input-box" />
-
+      
       {/* Group Bubbles */}
       <div className="group-bubbles">
         {groups.map((group, index) => (
-          <div key={index} style={{ position: 'relative' }}>
-            <div
-              className="bubble"
-              onClick={() => setActiveGroup(activeGroup === group.name ? null : group.name)}
-            >
+          <div key={index} className="bubble-container">
+            <div className="bubble">
               {group.name}
-            </div>
-            {activeGroup === group.name && (
+              {/* Menu */}
               <div className="menu">
                 {group.goals.map((goal, i) => (
                   <div key={i} className="menu-item">
@@ -48,7 +41,7 @@ const LandingPage = () => {
                   </div>
                 ))}
               </div>
-            )}
+            </div>
           </div>
         ))}
       </div>
